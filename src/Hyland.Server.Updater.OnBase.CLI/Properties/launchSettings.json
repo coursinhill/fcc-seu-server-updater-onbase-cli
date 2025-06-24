@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Hyland.Server.Updater.OnBase.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "start --managedComponentId BJeK15iS-00D5IjVCb2y-JNqjo6x3ayImHJzu-ndQ7c"
+    }
+  }
+}

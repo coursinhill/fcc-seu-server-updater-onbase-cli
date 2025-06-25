@@ -19,7 +19,7 @@ public class Program
             .AddJsonFile("appsettings.json")
             .Build();
 
-        IServiceProvider provider = new ServiceCollection()
+        using ServiceProvider provider = new ServiceCollection()
                  .AddLogging(builder =>
                  {
                      builder.AddConfiguration(root.GetSection("Logging"));

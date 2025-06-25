@@ -1,3 +1,4 @@
 .vs
 **\bin
 **\obj
+/src/Hyland.Server.Updater.OnBase.CLI/Properties/*

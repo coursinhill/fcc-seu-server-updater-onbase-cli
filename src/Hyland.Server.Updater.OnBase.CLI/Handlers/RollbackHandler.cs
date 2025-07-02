@@ -30,6 +30,7 @@ namespace Hyland.Server.Updater.OnBase.CLI.Handlers
                 }
 
                 string backupFile = parseResult.GetValue(Options.BackupFile) ?? string.Empty;
+                string salt = parseResult.GetValue(Options.Salt) ?? string.Empty;
 
                 PhysicalFile file = new PhysicalFile()
                 {
@@ -39,7 +40,7 @@ namespace Hyland.Server.Updater.OnBase.CLI.Handlers
 
                 Backup backup = _backupApplicationService.RetrieveBackup(file, application);
 
-                _backupApplicationService.RestoreApplication(application, backup);
+                _backupApplicationService.RestoreApplication(application, backup, salt);
 
                 Console.WriteLine("Successfully rolled back application.");
             }

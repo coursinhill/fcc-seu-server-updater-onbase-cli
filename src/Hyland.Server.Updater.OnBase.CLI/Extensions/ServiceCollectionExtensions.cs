@@ -15,6 +15,7 @@ namespace Hyland.Server.Updater.OnBase.CLI.Extensions
             collection.AddSingleton<BackupHandler>();
             collection.AddSingleton<VerifyHandler>();
             collection.AddSingleton<RollbackHandler>();
+            collection.AddSingleton<ValidateHandler>();
 
             return collection;
         }

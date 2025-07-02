@@ -22,6 +22,12 @@ namespace Hyland.Server.Updater.OnBase.CLI.Tokens
             Required = true
         };
 
+        public static Option<string> Salt = new Option<string>("--salt", ["-s"])
+        {
+            Description = "A secret value used to generate and validate the checksum for the backup package",
+            Required = false
+        };
+
         public static Option<string> TempPath = new Option<string>("--tempPath", ["-t"])
         {
             Description = "The temp directory for Backups",

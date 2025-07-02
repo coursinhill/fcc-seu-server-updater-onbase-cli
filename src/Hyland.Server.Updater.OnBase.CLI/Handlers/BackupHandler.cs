@@ -30,8 +30,9 @@ namespace Hyland.Server.Updater.OnBase.CLI.Handlers
                 }
 
                 string tempFolder = parseResult.GetValue(Options.TempPath) ?? string.Empty;
+                string salt = parseResult.GetValue(Options.Salt) ?? string.Empty;
 
-                Backup backup = _backupService.BackupApplication(application, tempFolder);
+                Backup backup = _backupService.BackupApplication(application, tempFolder, salt);
 
                 Console.WriteLine("Successfully created backup '{0}'", backup.File.SourcePath);
             }

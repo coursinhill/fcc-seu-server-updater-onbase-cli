@@ -38,6 +38,7 @@ public class Program
         BackupHandler backupHandler = provider.GetRequiredService<BackupHandler>();
         VerifyHandler verifyHandler = provider.GetRequiredService<VerifyHandler>();
         RollbackHandler rollbackHandler = provider.GetRequiredService<RollbackHandler>();
+        ValidateHandler validateHandler = provider.GetRequiredService<ValidateHandler>();
 
         //Commands
         Command listCommand = new Command("list", "List all applications found by the Server Updater");
@@ -80,16 +81,25 @@ public class Program
         Command backupCommand = new Command("backup", "Create a backup of the application with the supplied ManagedComponentId")
         {
             Options.Id,
-            Options.TempPath
+            Options.TempPath,
+            Options.Salt
         };
         backupCommand.SetAction(backupHandler.HandleRequest);
 
         Command rollbackCommand = new Command("rollback", "Roll back the application with the supplied ManagedComponentId with the specified backup")
         {
             Options.Id,
-            Options.BackupFile
+            Options.BackupFile,
+            Options.Salt
         };
         rollbackCommand.SetAction(rollbackHandler.HandleRequest);
+
+        Command validateCommand = new Command("validate", "Validate the specified backup")
+        {
+            Options.BackupFile,
+            Options.Salt
+        };
+        validateCommand.SetAction(validateHandler.HandleRequest);
 
         RootCommand command = new RootCommand("CLI tool to test the OnBase Server Updater")
         {
@@ -100,6 +110,7 @@ public class Program
             startCommand,
             stopCommand,
             updateCommand,
+            validateCommand,
             verifyCommand
         };
 

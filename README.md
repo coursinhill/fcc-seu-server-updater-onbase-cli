@@ -19,6 +19,7 @@ Commands:
   start     Start the application with the supplied ManagedComponentId
   stop      Stop the application with the supplied ManagedComponentId
   update    Install an update for the application with the supplied ManagedComponentId
+  validate  Validate the specified backup
   verify    Verify the installation of application with the supplied ManagedComponentId
 ```
 
@@ -34,6 +35,7 @@ Usage:
 Options:
   -i, --id (REQUIRED)        The Managed Component ID of the desired Application
   -t, --tempPath (REQUIRED)  The temp directory for Backups
+  -s, --salt                 A secret value used to generate and validate the checksum for the backup package
   -?, -h, --help             Show help and usage information
 ```
 
@@ -62,6 +64,7 @@ Usage:
 Options:
   -i, --id (REQUIRED)          The Managed Component ID of the desired Application
   -b, --backupFile (REQUIRED)  The full path to the backup file
+  -s, --salt                   A secret value used to generate and validate the checksum for the backup package
   -?, -h, --help               Show help and usage information
 ```
 
@@ -123,6 +126,21 @@ Options:
   -n, --nugetPath (REQUIRED)  The directory for Nuget files
   -v, --version               The version of the package to use [default is latest]
   -?, -h, --help              Show help and usage information
+```
+
+## Validate
+
+```
+Description:
+  Validate the specified backup
+
+Usage:
+  Hyland.Server.Updater.OnBase.CLI validate [options]
+
+Options:
+  -b, --backupFile (REQUIRED)  The full path to the backup file
+  -s, --salt                   A secret value used to generate and validate the checksum for the backup package
+  -?, -h, --help               Show help and usage information
 ```
 
 ## Verify

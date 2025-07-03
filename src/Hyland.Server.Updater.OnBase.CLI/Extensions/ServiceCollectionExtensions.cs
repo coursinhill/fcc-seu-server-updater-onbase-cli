@@ -1,4 +1,4 @@
-﻿using Hyland.Server.Updater.OnBase.CLI.Handlers;
+﻿using Hyland.Server.Updater.OnBase.CLI.CommandWrappers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Hyland.Server.Updater.OnBase.CLI.Extensions
@@ -7,15 +7,18 @@ namespace Hyland.Server.Updater.OnBase.CLI.Extensions
     {
         public static IServiceCollection AddCliCommandHandlers(this IServiceCollection collection)
         {
-            collection.AddSingleton<ListHandler>();
-            collection.AddSingleton<StartHandler>();
-            collection.AddSingleton<StopHandler>();
-            collection.AddSingleton<StageHandler>();
-            collection.AddSingleton<UpdateHandler>();
-            collection.AddSingleton<BackupHandler>();
-            collection.AddSingleton<VerifyHandler>();
-            collection.AddSingleton<RollbackHandler>();
-            collection.AddSingleton<ValidateHandler>();
+            collection.AddSingleton<ICommandWrapper, ListCommand>();
+            collection.AddSingleton<ICommandWrapper, StartCommand>();
+            collection.AddSingleton<ICommandWrapper, StopCommand>();
+
+            collection.AddSingleton<ICommandWrapper, UpdateCommand>();
+            collection.AddSingleton<ISubCommandWrapper, StageUpdateCommand>();
+            collection.AddSingleton<ISubCommandWrapper, VerifyUpdateCommand>();
+
+            collection.AddSingleton<ICommandWrapper, BackupCommand>();
+            collection.AddSingleton<ISubCommandWrapper, ValidateBackupCommand>();
+
+            collection.AddSingleton<ICommandWrapper, RollbackCommand>();
 
             return collection;
         }

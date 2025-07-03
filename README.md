@@ -15,12 +15,9 @@ Commands:
   backup    Create a backup of the application with the supplied ManagedComponentId
   list      List all applications found by the Server Updater
   rollback  Roll back the application with the supplied ManagedComponentId with the specified backup
-  stage     Stage an update for the application with the supplied ManagedComponentId
   start     Start the application with the supplied ManagedComponentId
   stop      Stop the application with the supplied ManagedComponentId
   update    Install an update for the application with the supplied ManagedComponentId
-  validate  Validate the specified backup
-  verify    Verify the installation of application with the supplied ManagedComponentId
 ```
 
 ## Backup
@@ -30,13 +27,31 @@ Description:
   Create a backup of the application with the supplied ManagedComponentId
 
 Usage:
-  backup [options]
+  backup [command] [options]
 
 Options:
   -i, --id (REQUIRED)        The Managed Component ID of the desired Application
   -t, --tempPath (REQUIRED)  The temp directory for Backups
   -s, --salt                 A secret value used to generate and validate the checksum for the backup package
   -?, -h, --help             Show help and usage information
+
+Commands:
+  validate  Validate the specified backup
+```
+
+### Validate
+
+```
+Description:
+  Validate the specified backup
+
+Usage:
+  backup validate [options]
+
+Options:
+  -b, --backupFile (REQUIRED)  The full path to the backup file
+  -s, --salt                   A secret value used to generate and validate the checksum for the backup package
+  -?, -h, --help               Show help and usage information
 ```
 
 ## List
@@ -66,22 +81,6 @@ Options:
   -b, --backupFile (REQUIRED)  The full path to the backup file
   -s, --salt                   A secret value used to generate and validate the checksum for the backup package
   -?, -h, --help               Show help and usage information
-```
-
-## Stage
-
-```
-Description:
-  Stage an update for the application with the supplied ManagedComponentId
-
-Usage:
-  stage [options]
-
-Options:
-  -i, --id (REQUIRED)         The Managed Component ID of the desired Application
-  -n, --nugetPath (REQUIRED)  The directory for Nuget files
-  -v, --version               The version of the package to use [default is latest]
-  -?, -h, --help              Show help and usage information
 ```
 
 ## Start
@@ -119,38 +118,43 @@ Description:
   Install an update for the application with the supplied ManagedComponentId
 
 Usage:
-  update [options]
+  update [command] [options]
 
 Options:
   -i, --id (REQUIRED)         The Managed Component ID of the desired Application
   -n, --nugetPath (REQUIRED)  The directory for Nuget files
-  -v, --version               The version of the package to use [default is latest]
+  -v, --version               The version of the package to use [default is latest#]
   -?, -h, --help              Show help and usage information
+
+Commands:
+  stage   Stage an update for the application with the supplied ManagedComponentId
+  verify  Verify the installation of application with the supplied ManagedComponentId
 ```
 
-## Validate
+### Stage
 
 ```
 Description:
-  Validate the specified backup
+  Stage an update for the application with the supplied ManagedComponentId
 
 Usage:
-  Hyland.Server.Updater.OnBase.CLI validate [options]
+  update stage [options]
 
 Options:
-  -b, --backupFile (REQUIRED)  The full path to the backup file
-  -s, --salt                   A secret value used to generate and validate the checksum for the backup package
-  -?, -h, --help               Show help and usage information
+  -i, --id (REQUIRED)         The Managed Component ID of the desired Application
+  -n, --nugetPath (REQUIRED)  The directory for Nuget files
+  -v, --version               The version of the package to use []
+  -?, -h, --help              Show help and usage information
 ```
 
-## Verify
+### Verify
 
 ```
 Description:
   Verify the installation of application with the supplied ManagedComponentId
 
 Usage:
-  verify [options]
+  update verify [options]
 
 Options:
   -i, --id (REQUIRED)  The Managed Component ID of the desired Application

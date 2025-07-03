@@ -1,7 +1,6 @@
 ﻿using Hyland.Server.Updater.Common.Extensions;
+using Hyland.Server.Updater.OnBase.CLI.CommandWrappers;
 using Hyland.Server.Updater.OnBase.CLI.Extensions;
-using Hyland.Server.Updater.OnBase.CLI.Handlers;
-using Hyland.Server.Updater.OnBase.CLI.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,97 +28,23 @@ public class Program
                 .AddCliCommandHandlers()
                 .BuildServiceProvider();
 
-        //handlers
-        ListHandler listHandler = provider.GetRequiredService<ListHandler>();
-        StartHandler startHandler = provider.GetRequiredService<StartHandler>();
-        StopHandler stopHandler = provider.GetRequiredService<StopHandler>();
-        StageHandler stageHandler = provider.GetRequiredService<StageHandler>();
-        UpdateHandler updateHandler = provider.GetRequiredService<UpdateHandler>();
-        BackupHandler backupHandler = provider.GetRequiredService<BackupHandler>();
-        VerifyHandler verifyHandler = provider.GetRequiredService<VerifyHandler>();
-        RollbackHandler rollbackHandler = provider.GetRequiredService<RollbackHandler>();
-        ValidateHandler validateHandler = provider.GetRequiredService<ValidateHandler>();
+        IEnumerable<Command> commands = provider.GetRequiredService<IEnumerable<ICommandWrapper>>()
+            .Select(w => w.Command)
+            .OrderBy(c => c.Name);
 
-        //Commands
-        Command listCommand = new Command("list", "List all applications found by the Server Updater");
-        listCommand.SetAction(listHandler.HandleRequest);
-
-        Command startCommand = new Command("start", "Start the application with the supplied ManagedComponentId")
+        RootCommand rootCommand = new RootCommand("CLI tool to test the OnBase Server Updater");
+        
+        foreach (Command command in commands)
         {
-            Options.Id
-        };
-        startCommand.SetAction(startHandler.HandleRequest);
-
-        Command stopCommand = new Command("stop", "Stop the application with the supplied ManagedComponentId")
-        {
-            Options.Id
-        };
-        stopCommand.SetAction(stopHandler.HandleRequest);
-
-        Command stageCommand = new Command("stage", "Stage an update for the application with the supplied ManagedComponentId")
-        {
-            Options.Id,
-            Options.NugetPath,
-            Options.Version,
-        };
-        stageCommand.SetAction(stageHandler.HandleRequest);
-
-        Command updateCommand = new Command("update", "Install an update for the application with the supplied ManagedComponentId")
-        {
-            Options.Id,
-            Options.NugetPath,
-            Options.Version
-        };
-        updateCommand.SetAction(updateHandler.HandleRequest);
-
-        Command verifyCommand = new Command("verify", "Verify the installation of application with the supplied ManagedComponentId")
-        {
-            Options.Id
-        };
-        verifyCommand.SetAction(verifyHandler.HandleRequest);
-
-        Command backupCommand = new Command("backup", "Create a backup of the application with the supplied ManagedComponentId")
-        {
-            Options.Id,
-            Options.TempPath,
-            Options.Salt
-        };
-        backupCommand.SetAction(backupHandler.HandleRequest);
-
-        Command rollbackCommand = new Command("rollback", "Roll back the application with the supplied ManagedComponentId with the specified backup")
-        {
-            Options.Id,
-            Options.BackupFile,
-            Options.Salt
-        };
-        rollbackCommand.SetAction(rollbackHandler.HandleRequest);
-
-        Command validateCommand = new Command("validate", "Validate the specified backup")
-        {
-            Options.BackupFile,
-            Options.Salt
-        };
-        validateCommand.SetAction(validateHandler.HandleRequest);
-
-        RootCommand command = new RootCommand("CLI tool to test the OnBase Server Updater")
-        {
-            backupCommand,
-            listCommand,
-            rollbackCommand,
-            stageCommand,
-            startCommand,
-            stopCommand,
-            updateCommand,
-            validateCommand,
-            verifyCommand
-        };
+            rootCommand.Add(command);
+        }
 
         Console.WriteLine("Hello. Enter desired command (--help for help. exit to exit):");
         string userInput = Console.ReadLine() ?? string.Empty;
 
         while (!_exitTerms.Contains(userInput, StringComparer.OrdinalIgnoreCase))
         {
-            ParseResult result = command.Parse(userInput);
+            ParseResult result = rootCommand.Parse(userInput);
             result.Invoke();
 
             Console.WriteLine();

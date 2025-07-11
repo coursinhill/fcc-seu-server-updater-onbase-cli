@@ -13,6 +13,8 @@ internal sealed class UpdateCommand : CommandWrapperBase
 
     protected override string Description => "Install an update for the application with the supplied ManagedComponentId";
 
+    protected override CommandType CommandType => CommandType.Update;
+
     protected override IReadOnlyList<Option> CommandOptions => [Options.Id, Options.NugetPath, Options.Version];
 
     private readonly IRepository<Application> _applicationRepo;
@@ -25,7 +27,7 @@ internal sealed class UpdateCommand : CommandWrapperBase
         IPackageRepository packageRepo, 
         IUpdateService updateService, 
         IApplicationFileInformationService fileInfoService)
-        : base(CommandType.Update, subCommands)
+        : base(subCommands)
     {
         _applicationRepo = applicationRepo;
         _packageRepo = packageRepo;

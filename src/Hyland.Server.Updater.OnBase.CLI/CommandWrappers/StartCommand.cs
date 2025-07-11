@@ -1,4 +1,5 @@
 ﻿using Hyland.Server.Updater.Interfaces.Interfaces.Services;
+using Hyland.Server.Updater.OnBase.CLI.Enumerations;
 using Hyland.Server.Updater.OnBase.CLI.Tokens;
 using System.CommandLine;
 
@@ -8,6 +9,8 @@ internal sealed class StartCommand : CommandWrapperBase
     protected override string Name => "start";
 
     protected override string Description => "Start the application with the supplied ManagedComponentId";
+
+    protected override CommandType CommandType => CommandType.Start;
 
     protected override IReadOnlyList<Option> CommandOptions => [Options.Id];
 

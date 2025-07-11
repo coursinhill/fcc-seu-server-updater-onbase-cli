@@ -1,8 +1,9 @@
-﻿using Hyland.Server.Updater.Interfaces.Interfaces.Repositories;
+﻿using Hyland.Server.Updater.Interfaces.Entities;
+using Hyland.Server.Updater.Interfaces.Interfaces.Repositories;
 using Hyland.Server.Updater.Interfaces.Interfaces;
+using Hyland.Server.Updater.OnBase.CLI.Enumerations;
 using Hyland.Server.Updater.OnBase.CLI.Tokens;
 using System.CommandLine;
-using Hyland.Server.Updater.Interfaces.Entities;
 
 namespace Hyland.Server.Updater.OnBase.CLI.CommandWrappers;
 internal class RollbackCommand : CommandWrapperBase
@@ -10,6 +11,8 @@ internal class RollbackCommand : CommandWrapperBase
     protected override string Name => "rollback";
 
     protected override string Description => "Roll back the application with the supplied ManagedComponentId with the specified backup";
+
+    protected override CommandType CommandType => CommandType.RollBack;
 
     protected override IReadOnlyList<Option> CommandOptions => [Options.Id, Options.BackupFile, Options.Salt];
 

@@ -15,6 +15,8 @@ internal class StageUpdateCommand : CommandWrapperBase, ISubCommandWrapper
 
     protected override string Description => "Stage an update for the application with the supplied ManagedComponentId";
 
+    protected override CommandType CommandType => CommandType.Update;
+
     protected override IReadOnlyList<Option> CommandOptions => [Options.Id, Options.NugetPath, Options.Version];
 
     private readonly IRepository<Application> _applicationRepo;

@@ -1,5 +1,6 @@
 ﻿using Hyland.Server.Updater.Interfaces.Entities;
 using Hyland.Server.Updater.Interfaces.Interfaces;
+using Hyland.Server.Updater.OnBase.CLI.Enumerations;
 using System.CommandLine;
 
 namespace Hyland.Server.Updater.OnBase.CLI.CommandWrappers;
@@ -8,6 +9,8 @@ internal sealed class ListCommand : CommandWrapperBase
     protected override string Name => "list";
 
     protected override string Description => "List all applications found by the Server Updater";
+
+    protected override CommandType CommandType => CommandType.List;
 
     protected override IReadOnlyList<Option> CommandOptions => [];
 

@@ -6,6 +6,7 @@ internal abstract class CommandWrapperBase : ICommandWrapper
 {
     protected abstract string Name { get; }
     protected abstract string Description { get; }
+    protected abstract CommandType CommandType { get; }
     public Command Command { get; }
     protected abstract IReadOnlyList<Option> CommandOptions { get; }
 
@@ -21,10 +22,10 @@ internal abstract class CommandWrapperBase : ICommandWrapper
         Command.SetAction(Execute);
     }
 
-    public CommandWrapperBase(CommandType type, IEnumerable<ISubCommandWrapper> subCommands)
+    public CommandWrapperBase(IEnumerable<ISubCommandWrapper> subCommands)
         : this()
     {
-        foreach (Command command in subCommands.Where(s => s.BaseCommand == type).Select(s => s.Command))
+        foreach (Command command in subCommands.Where(s => s.BaseCommand == CommandType).Select(s => s.Command))
         {
             Command.Add(command);
         }

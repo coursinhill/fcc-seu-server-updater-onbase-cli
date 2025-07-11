@@ -12,6 +12,8 @@ internal class ValidateBackupCommand : CommandWrapperBase, ISubCommandWrapper
 
     protected override string Description => "Validate the specified backup";
 
+    protected override CommandType CommandType => CommandType.Backup;
+
     protected override IReadOnlyList<Option> CommandOptions => [Options.BackupFile, Options.Salt];
 
     private readonly IBackupApplicationService _backupService;

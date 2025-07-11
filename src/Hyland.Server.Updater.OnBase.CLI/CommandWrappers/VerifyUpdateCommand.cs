@@ -14,6 +14,8 @@ internal class VerifyUpdateCommand : CommandWrapperBase, ISubCommandWrapper
 
     protected override string Description => "Verify the installation of application with the supplied ManagedComponentId";
 
+    protected override CommandType CommandType => CommandType.Update;
+
     protected override IReadOnlyList<Option> CommandOptions => [Options.Id];
 
     private readonly IRepository<Application> _applicationRepo;

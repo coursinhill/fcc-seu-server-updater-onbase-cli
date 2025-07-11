@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hyland.Server.Updater.Common" Version="3.4.0" />
+    <PackageReference Include="Hyland.Server.Updater.Common" Version="3.4.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta5.25306.1" />

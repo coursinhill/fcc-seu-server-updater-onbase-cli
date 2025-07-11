@@ -12,13 +12,15 @@ internal class BackupCommand : CommandWrapperBase
 
     protected override string Description => "Create a backup of the application with the supplied ManagedComponentId";
 
+    protected override CommandType CommandType => CommandType.Backup;
+
     protected override IReadOnlyList<Option> CommandOptions => [Options.Id, Options.TempPath, Options.Salt];
 
     private readonly IRepository<Application> _applicationRepo;
     private readonly IBackupApplicationService _backupService;
 
     public BackupCommand(IEnumerable<ISubCommandWrapper> subCommands, IRepository<Application> applicationRepo, IBackupApplicationService backupService)
-        : base(CommandType.Backup, subCommands)
+        : base(subCommands)
     {
         _applicationRepo = applicationRepo;
         _backupService = backupService;

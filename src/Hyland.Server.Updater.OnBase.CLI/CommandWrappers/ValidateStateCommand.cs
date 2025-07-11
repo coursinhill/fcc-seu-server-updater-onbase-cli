@@ -11,7 +11,7 @@ namespace Hyland.Server.Updater.OnBase.CLI.CommandWrappers
 
         protected override string Name => "validate";
 
-        protected override string Description => "Validate that the current state is the same as when stop was called. This will wipe out the state.";
+        protected override string Description => "Validate that the current state is the same as when stop was called. This will invalidate the state.";
 
         protected override IReadOnlyList<Option> CommandOptions => [Options.Id];
 

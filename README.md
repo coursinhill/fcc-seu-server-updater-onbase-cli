@@ -16,6 +16,7 @@ Commands:
   list      List all applications found by the Server Updater
   rollback  Roll back the application with the supplied ManagedComponentId with the specified backup
   start     Start the application with the supplied ManagedComponentId
+  state     Commands related to the state stored within the updater package
   stop      Stop the application with the supplied ManagedComponentId
   update    Install an update for the application with the supplied ManagedComponentId
 ```
@@ -91,6 +92,36 @@ Description:
 
 Usage:
   start [options]
+
+Options:
+  -i, --id (REQUIRED)  The Managed Component ID of the desired Application
+  -?, -h, --help       Show help and usage information
+```
+
+## State
+
+```
+Description:
+  Commands related to the state stored within the updater package
+
+Usage:
+  state [command] [options]
+
+Options:
+  -?, -h, --help  Show help and usage information
+
+Commands:
+  validate  Validate that the current state is the same as when stop was called. This will invalidate the state.
+```
+
+### Validate
+
+```
+Description:
+  Validate that the current state is the same as when stop was called. This will invalidate the state.
+
+Usage:
+  state validate [options]
 
 Options:
   -i, --id (REQUIRED)  The Managed Component ID of the desired Application

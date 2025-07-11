@@ -5,6 +5,7 @@ internal enum CommandType
     List,
     RollBack,
     Start,
+    State,
     Stop,
     Update
 }

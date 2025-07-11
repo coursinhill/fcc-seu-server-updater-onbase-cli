@@ -20,6 +20,9 @@ namespace Hyland.Server.Updater.OnBase.CLI.Extensions
 
             collection.AddSingleton<ICommandWrapper, RollbackCommand>();
 
+            collection.AddSingleton<ICommandWrapper, StateCommand>();
+            collection.AddSingleton<ISubCommandWrapper, ValidateStateCommand>();
+
             return collection;
         }
     }

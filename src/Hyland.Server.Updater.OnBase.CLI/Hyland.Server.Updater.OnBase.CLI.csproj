@@ -5,14 +5,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.1.1</Version>
+    <Version>0.1.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hyland.Server.Updater.Common" Version="3.4.2" />
+    <PackageReference Include="Hyland.Server.Updater.Common" Version="3.4.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.1" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta5.25306.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta6.25358.103" />
   </ItemGroup>
 
   <ItemGroup>

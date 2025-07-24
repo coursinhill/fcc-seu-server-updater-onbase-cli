@@ -14,6 +14,7 @@ Options:
 Commands:
   backup    Create a backup of the application with the supplied ManagedComponentId
   list      List all applications found by the Server Updater
+  package   Commands for interacting with nuget packages
   rollback  Roll back the application with the supplied ManagedComponentId with the specified backup
   start     Start the application with the supplied ManagedComponentId
   state     Commands related to the state stored within the updater package
@@ -66,6 +67,72 @@ Usage:
 
 Options:
   -?, -h, --help  Show help and usage information
+```
+
+## Package
+
+```
+Description:
+  Commands for interacting with nuget packages
+
+Usage:
+  package [command] [options]
+
+Options:
+  -?, -h, --help  Show help and usage information
+
+Commands:
+  delete   Delete the specified package
+  find     Find the package with the specified version, or latest if not supplied
+  install  Install the specified package
+```
+
+### Delete
+
+```
+Description:
+  Delete the specified package
+
+Usage:
+  package delete [options]
+
+Options:
+  -i, --id (REQUIRED)         The Managed Component ID of the desired Application
+  -n, --nugetPath (REQUIRED)  The directory for Nuget files
+  -v, --version               The version of the package to use [default is latest]
+  -?, -h, --help              Show help and usage information
+```
+
+### Find
+
+```
+Description:
+  Find the package with the specified version, or latest if not supplied
+
+Usage:
+  package find [options]
+
+Options:
+  -i, --id (REQUIRED)         The Managed Component ID of the desired Application
+  -n, --nugetPath (REQUIRED)  The directory for Nuget files
+  -v, --version               The version of the package to use [default is latest]
+  -?, -h, --help              Show help and usage information
+```
+
+### Install
+
+```
+Description:
+  Install the specified package
+
+Usage:
+  package install [options]
+
+Options:
+  -i, --id (REQUIRED)         The Managed Component ID of the desired Application
+  -n, --nugetPath (REQUIRED)  The directory for Nuget files
+  -v, --version               The version of the package to use [default is latest]
+  -?, -h, --help              Show help and usage information
 ```
 
 ## Rollback
@@ -154,7 +221,7 @@ Usage:
 Options:
   -i, --id (REQUIRED)         The Managed Component ID of the desired Application
   -n, --nugetPath (REQUIRED)  The directory for Nuget files
-  -v, --version               The version of the package to use [default is latest#]
+  -v, --version               The version of the package to use [default is latest]
   -?, -h, --help              Show help and usage information
 
 Commands:
@@ -174,7 +241,7 @@ Usage:
 Options:
   -i, --id (REQUIRED)         The Managed Component ID of the desired Application
   -n, --nugetPath (REQUIRED)  The directory for Nuget files
-  -v, --version               The version of the package to use []
+  -v, --version               The version of the package to use [default is latest]
   -?, -h, --help              Show help and usage information
 ```
 

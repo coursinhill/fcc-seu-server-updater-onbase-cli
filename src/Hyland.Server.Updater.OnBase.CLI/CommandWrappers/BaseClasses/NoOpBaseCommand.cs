@@ -11,6 +11,6 @@ internal abstract class NoOpBaseCommand : CommandWrapperBase
 
     protected override void ExecuteInternal(ParseResult parseResult)
     {
-        Console.WriteLine("Please specify a subcommand. Options are: {0}", string.Join(',', Command.Subcommands.Select(s => s.Name)));
+        Console.WriteLine("Please specify a subcommand. Options are: {0}", string.Join(", ", Command.Subcommands.Select(s => s.Name)));
     }
 }

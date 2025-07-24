@@ -23,6 +23,11 @@ namespace Hyland.Server.Updater.OnBase.CLI.Extensions
             collection.AddSingleton<ICommandWrapper, StateCommand>();
             collection.AddSingleton<ISubCommandWrapper, ValidateStateCommand>();
 
+            collection.AddSingleton<ICommandWrapper, PackageCommand>();
+            collection.AddSingleton<ISubCommandWrapper, DeletePackageCommand>();
+            collection.AddSingleton<ISubCommandWrapper, FindPackageCommand>();
+            collection.AddSingleton<ISubCommandWrapper, InstallPackageCommand>();
+
             return collection;
         }
     }

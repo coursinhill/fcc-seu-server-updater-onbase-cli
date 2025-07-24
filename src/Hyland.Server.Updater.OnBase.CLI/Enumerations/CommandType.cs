@@ -3,6 +3,7 @@ internal enum CommandType
 {
     Backup,
     List,
+    Package,
     RollBack,
     Start,
     State,
